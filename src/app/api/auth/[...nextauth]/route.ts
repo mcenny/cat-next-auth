@@ -5,19 +5,17 @@ import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 async function refreshToken(token: JWT): Promise<JWT> {
-  try {
-    const res = await API.post('/auth/refresh', {
+  const res = await API.post(
+    '/auth/refresh',
+    {},
+    {
       headers: {
         Authorization: `Refresh ${token.backendToken.refreshToken}`,
       },
-    });
-    const response = await res.data;
-    console.log(response, ':: refresh');
-    return { ...token, backendTokens: response };
-  } catch (error) {
-    console.log(error, ':: refresh error');
-    return { ...token, backendTokens: null };
-  }
+    },
+  );
+  const response = await res.data;
+  return { ...token, backendToken: response };
 }
 
 export const authOptions: NextAuthOptions = {

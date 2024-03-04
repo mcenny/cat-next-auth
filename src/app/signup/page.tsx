@@ -20,9 +20,8 @@ const SignupPage = () => {
         password: data.current.password,
       });
       alert("User Registered!");
-      // console.log({ response });
     } catch (error) {
-      console.log({ error });
+      console.log('registration error');
     }
   };
   const data = useRef<FormInputs>({
