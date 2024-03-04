@@ -20,7 +20,7 @@ const SignupPage = () => {
         password: data.current.password,
       });
       alert("User Registered!");
-      console.log({ response });
+      // console.log({ response });
     } catch (error) {
       console.log({ error });
     }
